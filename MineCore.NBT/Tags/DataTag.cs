@@ -1,19 +1,17 @@
-﻿using MineCore.NBT.Data;
-
-namespace MineCore.NBT.Tags
+﻿namespace MineCore.NBT.Tags
 {
     public abstract class DataTag<T> : Tag
     {
         public T Data { get; set; }
 
-        public DataTag(string name, T data) : base(name)
+        public DataTag(T data)
         {
             this.Data = data;
         }
 
-        public override string ToString()
+        public DataTag(string name, T data) : base(name)
         {
-            return $"Type: {this.Type.ToNameString()}, Value: {this.Data}";
+            this.Data = data;
         }
     }
 }
