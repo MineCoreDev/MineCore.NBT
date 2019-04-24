@@ -110,7 +110,7 @@ namespace MineCore.NBT.IO
         {
             if (this.IsNetwork)
             {
-                return ""; // TODO
+                return this.ReadString();
             }
             else
             {
@@ -122,7 +122,7 @@ namespace MineCore.NBT.IO
         {
             if (this.IsNetwork)
             {
-                // TODO
+                this.WriteString(value);
             }
             else
             {

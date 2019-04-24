@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.IO.Compression;
 using BinaryIO;
+using BinaryIO.Compression;
 using MineCore.NBT.Tags;
 
 namespace MineCore.NBT.IO
@@ -28,10 +30,9 @@ namespace MineCore.NBT.IO
             return tag;
         }
 
-        /*
-        public static void WriteZLIBFile(string fileName, CompoundTag tag, NBTEndian endian = NBTEndian.LITTLE_ENDIAN)
+        public static void WriteZLIBFile(string fileName, CompoundTag tag, ByteOrder order = ByteOrder.Little)
         {
-            using (NBTStream stream = new NBTStream(endian))
+            using (NBTStream stream = new NBTStream(order))
             {
                 tag.Write(stream);
 
@@ -58,9 +59,9 @@ namespace MineCore.NBT.IO
             }
         }
 
-        public static byte[] WriteZLIBFile(CompoundTag tag, NBTEndian endian = NBTEndian.LITTLE_ENDIAN)
+        public static byte[] WriteZLIBFile(CompoundTag tag, ByteOrder order = ByteOrder.Little)
         {
-            using (NBTStream stream = new NBTStream(endian))
+            using (NBTStream stream = new NBTStream(order))
             {
                 tag.Write(stream);
 
@@ -108,14 +109,14 @@ namespace MineCore.NBT.IO
             }
 
             CompoundTag tag = new CompoundTag();
-            using (NBTStream nbt = new NBTStream(payload, endian))
+            using (NBTStream nbt = new NBTStream(payload, order))
             {
                 tag.Read(nbt);
                 return tag;
             }
         }
 
-        public static CompoundTag ReadZLIBFile(byte[] buffer, NBTEndian endian = NBTEndian.LITTLE_ENDIAN)
+        public static CompoundTag ReadZLIBFile(byte[] buffer, ByteOrder order = ByteOrder.Little)
         {
             byte[] bytes = buffer;
             byte[] payload = new byte[0];
@@ -136,13 +137,12 @@ namespace MineCore.NBT.IO
             }
 
             CompoundTag tag = new CompoundTag();
-            using (NBTStream nbt = new NBTStream(payload, endian))
+            using (NBTStream nbt = new NBTStream(payload, order))
             {
                 tag.Read(nbt);
                 return tag;
             }
         }
-        */
 
         public static void WriteGZIPFile(string fileName, CompoundTag tag, ByteOrder order = ByteOrder.Little)
         {
